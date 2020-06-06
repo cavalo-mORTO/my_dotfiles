@@ -1,0 +1,18 @@
+! prevent jumping back to the last line with new output
+*scrollTtyOutput: false
+
+! save lines
+*.vt100.saveLines: 4096
+
+! Clipboard
+*.vt100.selectToClipboard: true
+
+*.vt100.translations: #override \n\
+	Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+	Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+
+! Adjusting the font
+*faceName: Monospace
+*faceSize: 11
+
+#include "/home/miguel/.Xresources.d/base16-3024"

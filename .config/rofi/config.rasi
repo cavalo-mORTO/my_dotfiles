@@ -1,0 +1,7 @@
+configuration {
+	modi: "window,drun,ssh,combi";
+	font: "mono 11";
+ 	combi-modi: "window,drun,ssh";
+	terminal: "termite";
+ }
+@import "/usr/share/rofi/themes/dmenu.rasi"
