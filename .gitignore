@@ -7,6 +7,7 @@
 !.profile
 !.xinitrc
 !.Xresources
+!/.Xresources.d
 
 !/.config
 /.config/*
