@@ -12,7 +12,7 @@
 	Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
 
 ! Adjusting the font
-*faceName: Monospace
+*faceName: Hack
 *faceSize: 11
 
-#include "/home/miguel/.Xresources.d/base16-3024"
+#include "/home/miguel/.Xresources.d/base16-nord"

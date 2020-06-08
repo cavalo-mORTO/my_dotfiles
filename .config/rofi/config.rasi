@@ -1,6 +1,6 @@
 configuration {
 	modi: "window,drun,ssh,combi";
-	font: "mono 11";
+	font: "hack 11";
  	combi-modi: "window,drun,ssh";
 	terminal: "termite";
  }

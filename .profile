@@ -2,7 +2,7 @@
 # ~/.profile
 #
 
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+[[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
 
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
@@ -13,5 +13,5 @@ export PATH=$PATH:~/.local/bin:~/.local/usr/bin
 export TERMINAL="termite"
 
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  startx
+	startx
 fi

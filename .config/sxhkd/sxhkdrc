@@ -12,7 +12,7 @@ super + e
 
 # ranger file manager
 super + @space
-	xterm -e ranger
+	$TERMINAL --class=ranger -e ranger
 
 # brave browser
 super + w
@@ -30,9 +30,9 @@ super + d
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# lock bspwm
+# bspwm screensaver
 super + Delete
-	$TERMINAL -c ~/.config/termite/themes/base16-greenscreen --class=lock -e 'unimatrix -a -s 95'
+	screensaver
 
 # screen fix
 super + Home

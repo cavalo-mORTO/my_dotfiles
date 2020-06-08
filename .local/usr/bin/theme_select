@@ -1,51 +1,60 @@
 #!/bin/bash
 
-# theme to be loaded
-theme="${1}"
+main ()
+{
+	local xresources=$HOME/.Xresources
+	local nvim=$HOME/.config/nvim
+	local termite=$HOME/.config/termite
 
-xresources=~/.Xresources
-nvim_dir=~/.config/nvim/
-termite_dir=~/.config/termite/
+	# specify the directories where the themes/colors reside for each app
+	local nvim_colors=$nvim/colors
+	local x_themes=$HOME/.Xresources.d
+	local termite_themes=$termite/themes
 
+	local paths=($nvim_colors $x_themes $termite_themes)
 
-# specify the directories where the themes reside for each app
-nvim=~/.config/nvim/colors/
-X=~/.Xresources.d/
-termite=~/.config/termite/themes/
-
-
-paths=($nvim $X $termite)
-
-# check if the theme exists
-function check_themes {
-	for path in ${paths[@]}; do
-		file="${path}${1}"
-		[[ "$path" = "$nvim" ]] && file="${file}.vim"
-		[[ ! -e $file ]] && return 1
+	# if only 1 of themes fails the script ends without modifying anything
+	for path in ${paths[@]};
+	do
+		local file=$path/$theme
+		[[ "$path" = "$nvim_colors" ]] && file="${file}.vim"
+		[[ ! -e $file ]] &&  { echo "No theme $file"; exit 1; }
 	done
+
+
+	# load nvim theme
+	echo "colorscheme $theme" > $nvim/colorscheme.vim
+
+
+	# check if include exists in ~/.Xresources
+	if ! grep -e '^#include "'$x_themes'' $xresources > /dev/null ;
+	then
+		echo '#include "'$x_themes'"' >> $xresources;
+	fi
+
+	# load new Xresources theme
+	theme_path=$x_themes/$theme
+	sed -i 's?.*#include "'$x_themes'.*?#include "'$theme_path'"?' $xresources
+	xrdb -load $xresources
+
+
+	# backup termite config ignoring colors
+	bak=$(sed "/\[colors\]/Q" $termite/config)
+	echo "$bak" > /tmp/termite.config.bak
+
+	# load the new config
+	theme_path=$termite_themes/$theme
+	cat /tmp/termite.config.bak $theme_path > $termite/config
+	killall -USR1 termite
+
+	bspwm_colors
 
 	return 0
 }
 
-# if only 1 of themes fails the script ends without modifying anything
-if ! check_themes ${theme}; then echo "No theme"; exit 1; fi
+# theme to be loaded
+theme=$1
+[ "$theme" == "" ] && { echo "Usage: $(basename $0) gruvbox-dark-pale"; exit 1; }
 
-# load nvim theme
-echo "colorscheme ${theme}" > "${nvim_dir}colorscheme.vim"
-
-# check if include exists in ~/.Xresources
-if ! grep -e '^#include' "${xresources}" > /dev/null; then echo "#include" >> "${xresources}"; fi
-
-# load new Xresources theme
-theme_path="${X}${theme}"
-sed -i 's?.*#include.*?#include "'${theme_path}'"?' "${xresources}"
-xrdb -load "${xresources}"
-
-# backup termite config ignoring colors
-bak=$(sed "/\[colors\]/Q" "${termite_dir}config")
-echo "${bak}" > /tmp/termite.config.bak
-
-# load the new config
-theme_path="${termite}${theme}"
-cat /tmp/termite.config.bak "${theme_path}" > "${termite_dir}config"
-killall -USR1 termite
+main
+unset theme

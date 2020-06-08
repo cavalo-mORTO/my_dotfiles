@@ -3,6 +3,7 @@
 #
 HISTSIZE=5000
 HISTFILESIZE=10000
+HISTCONTROL=ignoreboth
 
 [[ $- != *i* ]] && return
 
@@ -98,6 +99,8 @@ alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
 alias open=xdg-open
+alias vim=nvim
+alias vi=/usr/bin/vim
 
 xhost +local:root > /dev/null 2>&1
 
@@ -141,6 +144,7 @@ ex ()
   fi
 }
 
+
 # Base16 Shell
 #BASE16_SHELL=""$HOME/.base16-manager/chriskempson/base16-shell/
 #[ -n "$PS1" ] && \
@@ -148,10 +152,12 @@ ex ()
 #        eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 
-source ~/.local/usr/bin/*-completion.bash
+source $HOME/.local/usr/bin/*-completion.bash
 
 export VISUAL="nvim"
 
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS="-Xr"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+alias da='$(timeout 2 rofi -e "$(date +%I:%M)")'
+

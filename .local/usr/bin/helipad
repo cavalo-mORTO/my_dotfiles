@@ -2,7 +2,8 @@
 
 # Put this file somewhere in Path, for eg. /usr/local/bin
 
-_self="${0##*/}"
+_self=$(basename $0)
+
 id=$(xdotool search --class $_self | sort | tail -1)
 
 [[ -n "$id" ]] && bspc node "$id" --flag hidden -f
