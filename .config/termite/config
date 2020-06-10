@@ -4,51 +4,33 @@ scrollback_lines = 50000
 
 # Separator
 [colors]
-# Base16 Nord
-# Author: arcticicestudio
+# base16-solarized-dark
 
-foreground          = #E5E9F0
-foreground_bold     = #E5E9F0
-cursor              = #E5E9F0
-cursor_foreground   = #2E3440
-background          = #2E3440
+background = #002b36
+cursor = #93a1a1
+cursor_foreground = #002b36
+foreground = #93a1a1
+foreground_bold = #93a1a1
 
-# 16 color space
-
-# Black, Gray, Silver, White
-color0  = #2E3440
-color8  = #4C566A
-color7  = #E5E9F0
-color15 = #8FBCBB
-
-# Red
-color1  = #88C0D0
-color9  = #88C0D0
-
-# Green
-color2  = #BF616A
-color10 = #BF616A
-
-# Yellow
-color3  = #5E81AC
-color11 = #5E81AC
-
-# Blue
-color4  = #EBCB8B
-color12 = #EBCB8B
-
-# Purple
-color5  = #A3BE8C
-color13 = #A3BE8C
-
-# Teal
-color6  = #D08770
-color14 = #D08770
-
-# Extra colors
-color16 = #81A1C1
-color17 = #B48EAD
-color18 = #3B4252
-color19 = #434C5E
-color20 = #D8DEE9
-color21 = #ECEFF4
+color0 = #002b36
+color1 = #dc322f
+color10 = #859900
+color11 = #b58900
+color12 = #268bd2
+color13 = #6c71c4
+color14 = #2aa198
+color15 = #fdf6e3
+color16 = #cb4b16
+color17 = #d33682
+color18 = #073642
+color19 = #586e75
+color2 = #859900
+color20 = #839496
+color21 = #eee8d5
+color3 = #b58900
+color4 = #268bd2
+color5 = #6c71c4
+color6 = #2aa198
+color7 = #93a1a1
+color8 = #657b83
+color9 = #dc322f

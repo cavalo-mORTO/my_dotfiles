@@ -9,12 +9,15 @@ main ()
 	'https://www.youtube.com/watch?v=kJor4Y7WHYk'
 	'https://www.youtube.com/watch?v=7Wf0y6-21q4'
 	'https://www.youtube.com/watch?v=12gK_2hGo7I'
-	'https://www.youtube.com/watch?v=cxDz0Z066NI')
+	'https://www.youtube.com/watch?v=cxDz0Z066NI'
+	'https://www.youtube.com/watch?v=EXlK_GDRZNY'
+	'https://www.youtube.com/watch?v=Ba-QD3wnfF8'
+	'https://www.youtube.com/watch?v=x-w8gJP-9Gc')
 
 	local index=$(( $RANDOM % ${#urls[@]} ))
 
 	# for video with audio replace the -f flag with 22/18/17 or w/ audio keep 137/136/135
-	local video_url=$(youtube-dl -g -f 137/136/135 ${urls[$index]})
+	local video_url=$(youtube-dl -g -f 22/18/17 ${urls[$index]})
 	local time=$(( $(( $RANDOM % $(youtube-dl -j ${urls[$index]} | jq .duration) )) / 6 ))
 
 	ffplay -loop 0 -hide_banner -ss $time -i $video_url 
@@ -28,8 +31,9 @@ fi
 
 if ps -C $(basename $0) -o pid= | grep -v $$ ;
 then
-	timeout 3 rofi -e "Screensaver alredy running"
+	timeout 3 rofi -e "Screensaver alredy running!"
 	exit 1
 fi
 
+timeout 3 rofi -e "Screensaver starting..."
 main

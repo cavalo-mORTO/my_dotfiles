@@ -93,9 +93,11 @@ fi
 
 unset use_color safe_term match_lhs sh
 
-alias cp="cp -i"                          # confirm before overwriting something
+alias cp="cp -iv"                         # confirm before overwriting something
+alias mv="mv -iv"                         # confirm before overwriting something
+alias rm="rm -iv"                         # confirm before deleting
 alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
+alias free='free -h'                      # show sizes in human-readable format
 alias np='nano -w PKGBUILD'
 alias more=less
 alias open=xdg-open
@@ -159,5 +161,5 @@ export VISUAL="nvim"
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS="-Xr"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
-alias da='$(timeout 2 rofi -e "$(date +%I:%M)")'
+alias da='$(timeout 2 rofi -e "$(date +%I:%M%t%d/%m/%Y)")'
 

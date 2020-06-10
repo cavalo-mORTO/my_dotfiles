@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# check if script is already running
+if ps -C $(basename $0) -o pid= | grep -v $$ ;
+then
+	exit 0
+fi
+
+bspc subscribe desktop_focus | while read line
+do
+	timeout 0.5 rofi -e "Desktop $(bspc query -D -d --names)"
+done

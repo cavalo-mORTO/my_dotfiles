@@ -1,17 +1,44 @@
-#!/bin/bash
+#!/bin/sh
+
+termite_setup ()
+{
+	# get termite config file
+	local termite_config=$XDG_CONFIG_HOME/termite/config
+
+	# query colors to be used
+	local background=$(xrdb -query | grep "background" | cut -f2 | head -1)
+	local foreground=$(xrdb -query | grep "foreground" | cut -f2 | head -1)
+	local other_colors=$(xrdb -query | grep '^*color' | sed -e 's/[ \t]//' -e 's/:/ = /' -e 's/^*//')
+
+	# remove color section
+	sed -i "/\[colors\]/Q" $termite_config
+
+	# load new termite config
+	{
+		echo "[colors]"
+		echo -e "# $theme\n"
+		echo "background = $background"
+		echo "cursor = $foreground"
+		echo "cursor_foreground = $background"
+		echo "foreground = $foreground"
+		echo -e "foreground_bold = $foreground\n"
+		echo "$other_colors"
+	} >> $termite_config
+
+	# reload termite
+	killall -USR1 termite
+}
 
 main ()
 {
 	local xresources=$HOME/.Xresources
-	local nvim=$HOME/.config/nvim
-	local termite=$HOME/.config/termite
+	local nvim=$XDG_CONFIG_HOME/nvim
 
 	# specify the directories where the themes/colors reside for each app
 	local nvim_colors=$nvim/colors
 	local x_themes=$HOME/.Xresources.d
-	local termite_themes=$termite/themes
 
-	local paths=($nvim_colors $x_themes $termite_themes)
+	local paths=($nvim_colors $x_themes)
 
 	# if only 1 of themes fails the script ends without modifying anything
 	for path in ${paths[@]};
@@ -21,32 +48,19 @@ main ()
 		[[ ! -e $file ]] &&  { echo "No theme $file"; exit 1; }
 	done
 
-
 	# load nvim theme
 	echo "colorscheme $theme" > $nvim/colorscheme.vim
 
-
-	# check if include exists in ~/.Xresources
-	if ! grep -e '^#include "'$x_themes'' $xresources > /dev/null ;
-	then
-		echo '#include "'$x_themes'"' >> $xresources;
-	fi
-
+	
 	# load new Xresources theme
-	theme_path=$x_themes/$theme
-	sed -i 's?.*#include "'$x_themes'.*?#include "'$theme_path'"?' $xresources
-	xrdb -load $xresources
+	local theme_path=$x_themes/$theme
+	xrdb -override $theme_path
+	xrdb -query > $xresources
 
+	# setup termite with new colors
+	termite_setup
 
-	# backup termite config ignoring colors
-	bak=$(sed "/\[colors\]/Q" $termite/config)
-	echo "$bak" > /tmp/termite.config.bak
-
-	# load the new config
-	theme_path=$termite_themes/$theme
-	cat /tmp/termite.config.bak $theme_path > $termite/config
-	killall -USR1 termite
-
+	# and bspwm
 	bspwm_colors
 
 	return 0

@@ -2,7 +2,11 @@
 
 sxhkd &
 
+# load colors
 bspwm_colors &
+
+# load external rules
+bspwm_external_rules &
 
 # set up HDMI if connected
 intern=LVDS1
@@ -16,7 +20,7 @@ fi
 
 
 # start helipad
-[[ -z "$(xdotool search --class helipad)" ]] && $TERMINAL --class=helipad &
+helipad &
 
 # set wallpaper
 feh --randomize --bg-scale $HOME/.local/share/backgrounds/*
@@ -25,9 +29,9 @@ feh --randomize --bg-scale $HOME/.local/share/backgrounds/*
 picom &
 
 
-
 # make window focus follow mouse
 bspc config focus_follows_pointer true
+bspc config pointer_follows_focus true
 
 # for spiral mode
 bspc config automatic_scheme spiral

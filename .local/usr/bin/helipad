@@ -2,8 +2,11 @@
 
 # Put this file somewhere in Path, for eg. /usr/local/bin
 
-_self=$(basename $0)
 
-id=$(xdotool search --class $_self | sort | tail -1)
+# check if helipad is already running
+[[ -z "$(xdotool search --class helipad)" ]] && $TERMINAL --class=helipad &
+
+
+id=$(xdotool search --class $(basename $0) | sort | tail -1)
 
 [[ -n "$id" ]] && bspc node "$id" --flag hidden -f

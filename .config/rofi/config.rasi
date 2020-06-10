@@ -2,6 +2,8 @@ configuration {
 	modi: "window,drun,ssh,combi";
 	font: "hack 11";
  	combi-modi: "window,drun,ssh";
+	icon-theme: "Papirus";
+	show-icons: true;
 	terminal: "termite";
  }
 @import "/usr/share/rofi/themes/dmenu.rasi"
