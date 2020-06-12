@@ -20,6 +20,7 @@
 !/.config/rofi
 !/.config/sxhkd
 !/.config/termite
+!/.config/polybar
 
 !/.local
 /.local/*

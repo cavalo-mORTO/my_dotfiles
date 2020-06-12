@@ -1,12 +1,15 @@
 #! /bin/sh
 
-sxhkd &
+# if sxhkd is not running start it, else reload config
+if ! ps -C sxhkd -o pid= ;
+then
+    sxhkd &
+else
+    pkill -USR1 -x sxhkd &
+fi
 
 # load colors
 bspwm_colors &
-
-# load external rules
-bspwm_external_rules &
 
 # set up HDMI if connected
 intern=LVDS1
@@ -18,20 +21,21 @@ then
 	bspc monitor HDMI1 -d 8 9
 fi
 
-
-# start helipad
-helipad &
+# start polybar
+polybar_start &
 
 # set wallpaper
 feh --randomize --bg-scale $HOME/.local/share/backgrounds/*
 
 # set compositor for shadows and stuff
-picom &
+if ! ps -C picom -o pid= ;
+then
+    picom &
+fi
 
 
 # make window focus follow mouse
 bspc config focus_follows_pointer true
-bspc config pointer_follows_focus true
 
 # for spiral mode
 bspc config automatic_scheme spiral
@@ -39,7 +43,7 @@ bspc config automatic_scheme spiral
 bspc monitor LVDS1 -d 1 2 3 4 5 6 7
 
 bspc config border_width	2
-bspc config window_gap		4
+bspc config window_gap		3
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true

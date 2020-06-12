@@ -4,33 +4,33 @@ scrollback_lines = 50000
 
 # Separator
 [colors]
-# base16-solarized-dark
+# base16-nord
 
-background = #002b36
-cursor = #93a1a1
-cursor_foreground = #002b36
-foreground = #93a1a1
-foreground_bold = #93a1a1
+background =          #2e3440
+cursor =              #e5e9f0
+cursor_foreground =   #2e3440
+foreground =          #e5e9f0
+foreground_bold =     #e5e9f0
 
-color0 = #002b36
-color1 = #dc322f
-color10 = #859900
-color11 = #b58900
-color12 = #268bd2
-color13 = #6c71c4
-color14 = #2aa198
-color15 = #fdf6e3
-color16 = #cb4b16
-color17 = #d33682
-color18 = #073642
-color19 = #586e75
-color2 = #859900
-color20 = #839496
-color21 = #eee8d5
-color3 = #b58900
-color4 = #268bd2
-color5 = #6c71c4
-color6 = #2aa198
-color7 = #93a1a1
-color8 = #657b83
-color9 = #dc322f
+color0 =	#2e3440
+color1 =	#88c0d0
+color10 =	#bf616a
+color11 =	#5e81ac
+color12 =	#ebcb8b
+color13 =	#a3be8c
+color14 =	#d08770
+color15 =	#8fbcbb
+color16 =	#81a1c1
+color17 =	#b48ead
+color18 =	#3b4252
+color19 =	#434c5e
+color2 =	#bf616a
+color20 =	#d8dee9
+color21 =	#eceff4
+color3 =	#5e81ac
+color4 =	#ebcb8b
+color5 =	#a3be8c
+color6 =	#d08770
+color7 =	#e5e9f0
+color8 =	#4c566a
+color9 =	#88c0d0

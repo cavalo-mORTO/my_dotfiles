@@ -1,3 +1,7 @@
+set tabstop=4 shiftwidth=4 expandtab " replace tabs with spaces
+
+set splitbelow splitright " split more naturally
+
 set mouse=a
 set number
 
