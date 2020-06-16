@@ -1,9 +1,40 @@
 #!/bin/sh
 
-termite_setup ()
+rofi_theme ()
 {
-    # get termite config file
-    local termite_config=$XDG_CONFIG_HOME/termite/config
+    local rofi=$XDG_CONFIG_HOME/rofi
+    local rofi_theme=dmenu.rasi
+
+    local color0=$(xrdb -query | grep ^*color0: | cut -f2)
+    local color1=$(xrdb -query | grep ^*color1: | cut -f2)
+    local color2=$(xrdb -query | grep ^*color2: | cut -f2)
+    local color3=$(xrdb -query | grep ^*color3: | cut -f2)
+    local color4=$(xrdb -query | grep ^*color4: | cut -f2)
+    local color5=$(xrdb -query | grep ^*color5: | cut -f2)
+    local color6=$(xrdb -query | grep ^*color6: | cut -f2)
+    local color7=$(xrdb -query | grep ^*color7: | cut -f2)
+    local color8=$(xrdb -query | grep ^*color8: | cut -f2)
+    local color9=$(xrdb -query | grep ^*color9: | cut -f2)
+    local color10=$(xrdb -query | grep ^*color10: | cut -f2)
+    local color11=$(xrdb -query | grep ^*color11: | cut -f2)
+    local color12=$(xrdb -query | grep ^*color12: | cut -f2)
+    local color13=$(xrdb -query | grep ^*color13: | cut -f2)
+    local color14=$(xrdb -query | grep ^*color14: | cut -f2)
+    local color15=$(xrdb -query | grep ^*color15: | cut -f2)
+    local color16=$(xrdb -query | grep ^*color16: | cut -f2)
+    local color17=$(xrdb -query | grep ^*color17: | cut -f2)
+    local color18=$(xrdb -query | grep ^*color18: | cut -f2)
+    local color19=$(xrdb -query | grep ^*color19: | cut -f2)
+    local color20=$(xrdb -query | grep ^*color20: | cut -f2)
+    local color21=$(xrdb -query | grep ^*color21: | cut -f2)
+
+    sed -e "s/{color0}/$color0/" -e "s/{color1}/$color1/" -e "s/{color2}/$color2/" -e "s/{color3}/$color3/" -e "s/{color4}/$color4/" -e "s/{color5}/$color5/" -e "s/{color6}/$color6/" -e "s/{color7}/$color7/" -e "s/{color8}/$color8/" -e "s/{color9}/$color9/" -e "s/{color10}/$color10/" -e "s/{color11}/$color11/" -e "s/{color12}/$color12/" -e "s/{color13}/$color13/" -e "s/{color14}/$color14/" -e "s/{color15}/$color15/" -e "s/{color16}/$color16/" -e "s/{color17}/$color17/" -e "s/{color18}/$color18/" -e "s/{color19}/$color19/" -e "s/{color20}/$color20/" -e "s/{color21}/$color21/" $rofi/themes/$rofi_theme > $rofi/theme.rasi
+
+}
+
+termite_theme ()
+{
+    local termite=$XDG_CONFIG_HOME/termite
 
     # query colors to be used
     local background=$(xrdb -query | grep "background" | cut -f2 | head -1)
@@ -11,7 +42,7 @@ termite_setup ()
     local other_colors=$(xrdb -query | grep '^*color' | sed -e 's/:/ =/' -e 's/^*//')
 
     # remove color section
-    sed -i "/\[colors\]/Q" $termite_config
+    sed -i "/\[colors\]/Q" $termite/config
 
     # load new termite config
     {
@@ -25,7 +56,7 @@ termite_setup ()
         echo "foreground_bold =     $foreground"
         echo ""
         echo "$other_colors"
-    } >> $termite_config
+    } >> $termite/config
 
     # reload termite
     killall -USR1 termite
@@ -33,8 +64,8 @@ termite_setup ()
 
 main ()
 {
-    local xresources=$HOME/.Xresources
     local nvim=$XDG_CONFIG_HOME/nvim
+    local xresources=$HOME/.Xresources
 
     # specify the directories where the themes/colors reside for each app
     local nvim_colors=$nvim/colors
@@ -43,16 +74,16 @@ main ()
     local paths=($nvim_colors $x_themes)
 
     # if only 1 of themes fails the script ends without modifying anything
-    for path in ${paths[@]};
-    do
-        local file=$path/$theme
-        [[ "$path" = "$nvim_colors" ]] && file="${file}.vim"
-        [[ ! -e $file ]] &&  { echo "No theme $file"; exit 1; }
-    done
+    local themes=$(ls ${paths[@]} | grep -v "^$HOME" | sed 's/\.[^.]*$//' | sort | uniq -d)
+
+    if ! printf '%s\n' ${themes[@]} | grep -q -P "^${theme}$" ;
+    then
+        echo "No theme ${theme}"
+        exit 1
+    fi
 
     # load nvim theme
-    echo "colorscheme $theme" > $nvim/colorscheme.vim
-
+    sed -i "s/^colors.*$/colorscheme $theme/" $nvim/init.vim
     
     # load new Xresources theme
     local theme_path=$x_themes/$theme
@@ -60,20 +91,22 @@ main ()
     xrdb -query > $xresources
 
     # setup termite with new colors
-    termite_setup
+    termite_theme
 
-    # bspwm
+    # ...bspwm
     bspwm_colors
 
-    # and polybar
+    # ...polybar
     polybar_start
+
+    # and rofi
+    rofi_theme
 
     return 0
 }
 
 # theme to be loaded
 theme=$1
-[ "$theme" == "" ] && { echo "Usage: $(basename $0) gruvbox-dark-pale"; exit 1; }
+[ "$theme" == "" ] && { echo "Usage: $(basename $0) base16-nord"; exit 1; }
 
 main
-unset theme

@@ -161,5 +161,3 @@ export VISUAL="nvim"
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS="-Xr"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
-alias da='$(timeout 2 rofi -e "$(date +%I:%M%t%d/%m/%Y)")'
-

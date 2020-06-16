@@ -294,7 +294,7 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = ${colors.darkmagenta}
-label-connected = %essid% %downspeed:9%
+label-connected = %local_ip%%downspeed:9%
 
 format-disconnected = 😱 <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
@@ -319,9 +319,9 @@ format-connected-underline = ${colors.darkgreen}
 format-connected = 😈 <label-connected>
 label-connected = %local_ip%%downspeed:9%
 
-format-disconnected = <label-disconnected>
+format-disconnected = 😱 <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = 😱 %ifname%
+label-disconnected = %ifname%
 label-disconnected-foreground = ${colors.gray}
 
 [module/date]
@@ -362,7 +362,7 @@ ramp-volume-0 = 🔈
 ramp-volume-1 = 🔉
 ramp-volume-2 = 🔊
 
-bar-volume-width = 10
+bar-volume-width = 9
 bar-volume-foreground-0 = ${colors.blue}
 bar-volume-foreground-1 = ${colors.blue}
 bar-volume-foreground-2 = ${colors.green}
@@ -373,9 +373,9 @@ bar-volume-foreground-6 = ${colors.red}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
-bar-volume-fill = =
+bar-volume-fill = ─
 bar-volume-fill-font = 2
-bar-volume-empty = =
+bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.gray}
 
