@@ -1,12 +1,8 @@
 #! /bin/sh
 
-# if sxhkd is not running start it, else reload config
-if ! ps -C sxhkd -o pid= ;
-then
-    sxhkd &
-else
-    pkill -USR1 -x sxhkd &
-fi
+pidof sxhkd || sxhkd &
+
+bspwm_swallow &
 
 # load colors
 bspwm_colors &
@@ -15,10 +11,13 @@ bspwm_colors &
 intern=LVDS1
 extern=HDMI1
 
+bspc monitor $intern -d 1 2 3 4 5 6 7
+
 if xrandr | grep "$extern connected" ;
 then
-	xrandr --output "$extern" --auto --left-of $intern
-	bspc monitor HDMI1 -d 8 9
+	xrandr --output "$extern" --mode 1920x1080 --left-of $intern
+	bspc monitor $extern -d 8
+    bspc monitor LVDS1 -s HDMI1
 fi
 
 # start polybar
@@ -28,19 +27,13 @@ polybar_start &
 feh --randomize --bg-scale $HOME/.local/share/backgrounds/*
 
 # set compositor for shadows and stuff
-if ! ps -C picom -o pid= ;
-then
-    picom &
-fi
-
+pidof picom || picom &
 
 # make window focus follow mouse
 bspc config focus_follows_pointer true
 
 # for spiral mode
 bspc config automatic_scheme spiral
-
-bspc monitor LVDS1 -d 1 2 3 4 5 6 7
 
 bspc config border_width	2
 bspc config window_gap		3

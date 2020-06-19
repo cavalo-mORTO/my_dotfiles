@@ -2,9 +2,9 @@
 
 main ()
 {
-	local color1=$(xrdb -query | grep "color1" | cut -f2 | head -1)
-	local color8=$(xrdb -query | grep "color8" | cut -f2 | head -1)
-	local color9=$(xrdb -query | grep "color9" | cut -f2 | head -1)
+	local color1=$(xrdb -query | grep "^*color1:" | cut -f2)
+	local color8=$(xrdb -query | grep "^*color8:" | cut -f2)
+	local color9=$(xrdb -query | grep "^*color9:" | cut -f2)
 
 	bspc config normal_border_color $color8
 	bspc config active_border_color $color9
