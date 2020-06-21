@@ -4,9 +4,9 @@
  * Copyright: Dave Davenport
  */
 * {
-    background-color:   #1d2021;
-    border-color:       #e5e5e5;
-    text-color:         #d5d5d5;
+    background-color:   #2e3440;
+    border-color:       #8fbcbb;
+    text-color:         #e5e9f0;
 }
 
 #window {
@@ -37,6 +37,6 @@
     padding:            0px 2px;
 }
 #element selected {
-    background-color:   #1e8bac;
-    text-color:         #1d2021;
+    background-color:   #ebcb8b;
+    text-color:         #2e3440;
 }

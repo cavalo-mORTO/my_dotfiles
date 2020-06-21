@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# start hot-key daemon
+sxhkd &
+
+# start polybar
+polybar main &
+
+# set wallpaper
+feh --randomize --bg-scale $HOME/.local/share/backgrounds/*
+
+# set compositor for shadows and stuff
+picom &

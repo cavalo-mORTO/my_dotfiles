@@ -65,8 +65,10 @@ module-margin-left = 1
 module-margin-right = 1
 
 
-font-0 = "Hack:size=9:weight=bold;2"
-font-1 = Noto Color Emoji:scale=11:style=Regular;2
+font-0 = Hack:size=9:weight=bold;2
+font-1 = Noto Sans Symbols2:size=10:style=Regular;2
+;font-2 = Noto Color Emoji:scale=10:style=Regular;2
+font-2 = DejaVuSans:size=10;2
 
 ;font-0 = mono:pixelsize=9;1
 ;font-1 = Inconsolata Nerd Font:size=8;1
@@ -117,7 +119,7 @@ module-margin-right = 1
 
 ;font-0 = "Hack:pixelsize=11;0"
 font-0 = "Hack:size=10:weight=bold;2"
-font-1 = Noto Color Emoji:scale=10:style=Regular;2
+;font-1 = Noto Color Emoji:scale=10:style=Regular;2
 ;font-3 = Symbola:pixelsize=9;1
 
 
@@ -252,11 +254,11 @@ format = <ramp> <label>
 label = %percentage%%
 
 ; Only applies if <ramp> is used
-ramp-0 = 🌑
-ramp-1 = 🌒
+ramp-4 = 🌑
+ramp-3 = 🌒
 ramp-2 = 🌓
-ramp-3 = 🌔
-ramp-4 = 🌕
+ramp-1 = 🌔
+ramp-0 = 🌕
 
 ; Only applies if <bar> is used
 bar-width = 10
@@ -274,7 +276,7 @@ type = internal/cpu
 interval = 2
 format = %{A1:$TERMINAL -e htop:}<label> <ramp-coreload>%{A}
 format-underline = ${colors.red}
-label = 💻
+label = CPU
 
 ; Spacing between individual per-core ramps
 ramp-coreload-spacing = 1
@@ -292,7 +294,7 @@ type = internal/memory
 interval = 2
 format = %{A1:$TERMINAL -e htop:}<label>%{A}
 format-underline = ${colors.darkcyan}
-label = 🧠 %gb_free%
+label = MEM %gb_free%
 
 
 [module/wlan]
@@ -351,7 +353,7 @@ time-alt = %H:%M:%S
 ;time-alt = " at %H:%M"
 ;time-alt = %H:%M:%S
 
-format-prefix = "🕓"
+format = %{A1:rofi -e "$(cal -3)":}🕓 <label>%{A}
 format-prefix-foreground = ${colors.gray}
 format-underline = ${colors.blue}
 
