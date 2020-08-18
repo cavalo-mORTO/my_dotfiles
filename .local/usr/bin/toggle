@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Put this file somewhere in Path, for eg. /usr/local/bin
+case $1 in
+    "helipad")
+        [[ -z "$(xdotool search --class $1)" ]] && $TERMINAL --class=$1 &
+        ;;
+    "ranger")
+        [[ -z "$(xdotool search --class $1)" ]] && $TERMINAL -e $1 --class=$1 &
+        ;;
+    *)
+        exit 1;
+        ;;
+esac
+
+id=$(xdotool search --class $1 | sort | tail -1)
+
+[[ -n "$id" ]] && bspc node "$id" --flag hidden -f

@@ -4,7 +4,7 @@
 
 # launch xterm
 super + {_,shift + }Return
-	{helipad, $TERMINAL}
+	{toggle helipad, $TERMINAL}
 
 # launch vim
 super + e
@@ -12,7 +12,7 @@ super + e
 
 # ranger file manager
 super + @space
-	$TERMINAL --class=ranger -e ranger
+    toggle ranger
 
 # brave browser
 super + w

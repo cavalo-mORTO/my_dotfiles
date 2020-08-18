@@ -97,7 +97,8 @@ main ()
     bspwm_colors
 
     # ...polybar
-    polybar_start
+    pkill polybar
+    polybar main &
 
     # and rofi
     rofi_theme

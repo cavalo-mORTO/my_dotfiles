@@ -7,7 +7,7 @@ sxhkd &
 polybar main &
 
 # set wallpaper
-feh --randomize --bg-scale $HOME/.local/share/backgrounds/*
+feh --no-fehbg --bg-fill --randomize $HOME/.local/share/backgrounds/*
 
 # set compositor for shadows and stuff
 picom &

@@ -100,7 +100,6 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -h'                      # show sizes in human-readable format
 alias np='nano -w PKGBUILD'
 alias more=less
-alias o=xdg-open
 alias vim=nvim
 alias vi=/usr/bin/vim
 
@@ -146,17 +145,13 @@ ex ()
   fi
 }
 
-
-# Base16 Shell
-#BASE16_SHELL=""$HOME/.base16-manager/chriskempson/base16-shell/
-#[ -n "$PS1" ] && \
-#    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-#        eval "$("$BASE16_SHELL/profile_helper.sh")"
+open ()
+{
+    nohup xdg-open "$1" > /dev/null 2>&1 &
+}
 
 
 source $HOME/.local/usr/bin/*-completion.bash
-
-export VISUAL="nvim"
 
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS="-Xr"

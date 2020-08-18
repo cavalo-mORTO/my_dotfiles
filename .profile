@@ -10,6 +10,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 export PATH=$PATH:$HOME/.local/bin:$HOME/.local/usr/bin
 export TERMINAL="termite"
+export VISUAL="nvim"
 
 
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
