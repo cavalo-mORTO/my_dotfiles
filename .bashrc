@@ -78,7 +78,7 @@ if ${use_color} ; then
 		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
 	fi
 
-	alias ls='ls --color=auto'
+	alias ls='ls -h --color=auto'
 	alias grep='grep --colour=auto'
 	alias egrep='egrep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
@@ -129,6 +129,7 @@ ex ()
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
+      *.tar.lz)    tar --lzip -xf $1 ;;
       *.bz2)       bunzip2 $1   ;;
       *.rar)       unrar x $1     ;;
       *.gz)        gunzip $1    ;;
@@ -147,7 +148,14 @@ ex ()
 
 open ()
 {
-    nohup xdg-open "$1" > /dev/null 2>&1 &
+    if [ -f $1 ] ; then
+        case $1 in
+            *.torrent)  transmission-cli $1 > /dev/null 2>&1 & ;;
+            *)          nohup xdg-open "$1" > /dev/null 2>&1 & ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
 

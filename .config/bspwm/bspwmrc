@@ -36,7 +36,6 @@ bspc config honor_size_hints false
 
 bspc rule -a ffplay desktop='^7' state=fullscreen follow=on
 bspc rule -a helipad state=pseudo_tiled rectangle=1150x470+0+0 sticky=on hidden=on
-bspc rule -a Brave-browser desktop='^2'
 bspc rule -a Brave state=floating rectangle=900x470+0+0
 bspc rule -a ranger state=pseudo_tiled rectangle=1150x500+0+0 sticky=on
 bspc rule -a mpv state=floating follow=on rectangle=1166x568+100+100

@@ -11,3 +11,5 @@ feh --no-fehbg --bg-fill --randomize $HOME/.local/share/backgrounds/*
 
 # set compositor for shadows and stuff
 picom &
+
+wmname LG3D &

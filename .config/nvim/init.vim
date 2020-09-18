@@ -20,3 +20,6 @@ colorscheme base16-helios
 
 au ColorScheme * hi Normal ctermbg=none guibg=none
 au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
+
+let g:csv_nomap_up=1
+let g:csv_nomap_down=1
