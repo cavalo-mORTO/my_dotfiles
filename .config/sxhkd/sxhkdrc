@@ -34,10 +34,13 @@ super + Escape
 super + Delete
 	screensaver
 
-# screen fix
-super + KP_Enter
-	xrandr -s 1280x720 && xrandr -s 1366x768
+# power menu
+super + Home
+    power.sh
 
+# display on all connected screens
+super + p
+    display.sh && feh --no-fehbg --bg-fill $WALLPAPER
 
 #
 # bspwm hotkeys

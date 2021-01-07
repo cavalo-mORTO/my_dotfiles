@@ -79,7 +79,7 @@ font-2 = DejaVuSans:size=10;2
 ; Other modules: mpd xkeyboard filesystem xbacklight backlight-acpi cpu memory temperature powermenu weather
 modules-left = bspwm xwindow
 ;modules-center =
-modules-right = volume xbacklight wlan eth memory cpu date
+modules-right = volume xbacklight wlan eth memory cpu popup-calendar
 
 tray-position = right
 tray-padding = 0
@@ -333,6 +333,15 @@ format-disconnected = 😱 <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = %ifname%
 label-disconnected-foreground = ${colors.gray}
+
+[module/popup-calendar]
+type = custom/script
+exec = ~/.local/usr/bin/popup-calendar.sh
+interval = 5
+click-left = ~/.local/usr/bin/popup-calendar.sh --popup &
+format-prefix-foreground = ${colors.gray}
+format-underline = ${colors.blue}
+
 
 [module/date]
 type = internal/date

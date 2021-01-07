@@ -158,9 +158,9 @@ open ()
     fi
 }
 
-
 source $HOME/.local/usr/bin/*-completion.bash
-
+export WALLPAPER="$(ls -d /usr/share/backgrounds/archlinux/* ~/.local/share/backgrounds/* | xargs shuf -n1 -e)"
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS="-Xr"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+alias wifi="sudo wpa_supplicant -B -D wext -i wlp7s0 -c /etc/wpa_supplicant.conf"

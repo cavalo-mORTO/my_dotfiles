@@ -3,13 +3,11 @@
 # start hot-key daemon
 sxhkd &
 
-# start polybar
-polybar main &
-
-# set wallpaper
-feh --no-fehbg --bg-fill --randomize $HOME/.local/share/backgrounds/*
-
 # set compositor for shadows and stuff
 picom &
 
-wmname LG3D &
+# set wallpaper
+feh --no-fehbg --bg-fill $WALLPAPER
+
+# start polybar
+polybar -r main &

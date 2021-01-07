@@ -31,7 +31,7 @@ fi
 
 if ps -C $(basename $0) -o pid= | grep -v $$ ;
 then
-	timeout 3 rofi -e "Screensaver alredy running!"
+	timeout 3 rofi -e "Screensaver alredy running"
 	exit 1
 fi
 
