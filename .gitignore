@@ -21,6 +21,8 @@
 !/.config/sxhkd
 !/.config/termite
 !/.config/polybar
+!/.config/neomutt
+!/.config/flavours
 
 !/.local
 /.local/*

@@ -1,0 +1,40 @@
+set mbox_type = Maildir
+set header_cache = "~/.cache/mutt"
+set message_cachedir = "~/.cache/mutt"
+unset use_domain
+
+# ================  Composition  ====================
+set editor				= "nvim +/^$ ++1 -c 'set filetype=mail textwidth=0 noautoindent'"
+set edit_headers = yes  # See the headers when editing
+set charset = UTF-8     # value of $LANG; also fallback for send_charset
+set mailcap_path = ~/.config/neomutt/mailcap
+auto_view text/html
+
+# Set up preview pane for messages
+set pager_index_lines 	= 12 	# number of index lines to show
+set pager_context 		= 3     # number of context lines to show
+set pager_stop          = yes   # don't go to next message automatically
+set menu_scroll         = yes   # scroll in menus
+set tilde               = yes   # show tildes like in vim
+set markers             = no 	# no ugly plus signs
+
+set realname = "Miguel Rodrigues"
+source "gpg -dq ~/.my_pwds.gpg |"
+
+## ACCOUNT1
+#source "~/.config/neomutt/accounts/miguelmig17"
+#folder-hook miguelmig17* 'source ~/.config/neomutt/accounts/miguelmig17'
+
+## ACCOUNT2
+source "~/.config/neomutt/accounts/miguel_mig21"
+folder-hook miguel_mig21* 'source ~/.config/neomutt/accounts/miguel_mig21'
+
+## ACCOUNT3
+source "~/.config/neomutt/accounts/miguelangelorodrigues"
+folder-hook miguelangelorodrigues* 'source ~/.config/neomutt/accounts/miguelangelorodrigues'
+
+macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
+bind index,pager B sidebar-toggle-visible
+
+source "~/.config/neomutt/colors"
+source "~/.config/neomutt/vim-keys.rc"

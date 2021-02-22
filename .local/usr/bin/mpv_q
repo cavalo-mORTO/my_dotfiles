@@ -1,7 +1,0 @@
-#!/bin/sh
-
-[ -z "$1" ] && { mpv -h; exit 1; }
-
-pidof mpv && killall mpv
-
-mpv --really-quiet "$@" &

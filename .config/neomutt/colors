@@ -1,0 +1,37 @@
+# general ------------ foreground ---- background -----------------------------
+color error		lightwhite	lightmagenta
+color indicator		lightwhite	lightblack
+color markers		red	default
+color message		default		default
+color normal		default		default
+color prompt		default	        default
+color search		lightgreen		default
+color status 		lightmagenta	black
+color tilde		lightwhite	default
+color tree		lightmagenta	default
+
+# message index ------ foreground ---- background -----------------------------
+color index		red	default 	~D # deleted messages
+color index		lightgreen		default 	~F # flagged messages
+color index		cyan	default 	~N # new messages
+color index		lightmagenta	default 	~Q # messages which have been replied to
+color index		lightred	default 	~T # tagged messages
+color index		lightmagenta	default		~v # messages part of a collapsed thread
+
+# message headers ---- foreground ---- background -----------------------------
+color hdrdefault	cyan	default
+color header		lightwhite	default		^Subject:.*
+
+# message body ------- foreground ---- background -----------------------------
+color attachment	yellow	default
+color body		lightwhite	default		[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+               # email addresses
+color body		yellow	default		(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+        # URLs
+color body		lightwhite	default		(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$) # *bold* text
+color body		lightwhite	default		(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)     # _underlined_ text
+color body		lightwhite	default		(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)     # /italic/ text
+color quoted		lightmagenta		default
+color quoted1		cyan	default
+color quoted2		lightgreen		default
+color quoted3		lightred	default
+color quoted4		lightmagenta	default
+color signature		lightmagenta	default

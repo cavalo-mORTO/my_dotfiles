@@ -18,7 +18,7 @@ set backupdir=$HOME/.local/share/nvim/backup
 set termguicolors
 set background=dark
 let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-dracula
+colorscheme base16
 
 au ColorScheme * hi Normal ctermbg=none guibg=none
 au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red

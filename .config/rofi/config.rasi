@@ -7,3 +7,4 @@ configuration {
 	terminal: "termite";
  }
 @import "/usr/share/rofi/themes/Arc-Dark.rasi"
+@import "~/.config/rofi/themes/colors.rasi"

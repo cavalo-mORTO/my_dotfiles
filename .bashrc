@@ -158,7 +158,6 @@ open ()
     fi
 }
 
-source $HOME/.local/usr/bin/*-completion.bash
 export WALLPAPER="$(ls -d /usr/share/backgrounds/archlinux/* ~/.local/share/backgrounds/* | xargs shuf -n1 -e)"
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS="-Xr"

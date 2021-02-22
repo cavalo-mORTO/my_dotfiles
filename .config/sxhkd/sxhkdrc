@@ -42,6 +42,10 @@ super + Home
 super + p
     display.sh && feh --no-fehbg --bg-fill $WALLPAPER
 
+# screen fix
+super + KP_Enter
+    xrandr -s 1280x720 && xrandr -s 1366x768
+
 #
 # bspwm hotkeys
 #
@@ -180,6 +184,9 @@ super + bracketright
 	bspc node -z bottom 0 -7; \
 	bspc node -z left 7 0
 
+# focus next/prev monitor
+super + {KP_Add,KP_Subtract}
+	bspc monitor -f {next,prev}
 
 # SPECIALKEYS
 XF86MonBrightness{Up,Down}

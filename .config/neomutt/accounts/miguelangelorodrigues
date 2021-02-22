@@ -1,0 +1,24 @@
+## Receive options.
+set imap_user = "miguelangelorodrigues@enta.pt"
+set imap_pass = $my_pass_0
+set folder = "imaps://imap.gmail.com"
+set spoolfile = "+INBOX"
+set record="+[Gmail]/Correio enviado"
+set postponed="+[Gmail]/Rascunhos"
+set mbox="+[Gmail]/Todo o correio"
+set trash = "+[Gmail]/Caixote do Lixo"
+
+## Send options.
+set smtp_url = "smtp://miguelangelorodrigues@smtp.gmail.com"
+set smtp_pass = $my_pass_0
+set from = "miguelangelorodrigues@enta.pt"
+set hostname="enta.pt"
+set use_from = yes
+
+# Connection options
+set ssl_force_tls = yes
+unset ssl_starttls
+
+## Hook -- IMPORTANT!
+account-hook miguelangelorodrigues* "set imap_user=miguelangelorodrigues@enta.pt imap_pass=$my_pass_0"
+mailboxes +inbox

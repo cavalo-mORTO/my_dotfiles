@@ -37,7 +37,6 @@ white = ${xrdb:color15:#ebdbb2}
 background = ${xrdb:color0:#1d2021}
 foreground = ${xrdb:color7:#ebdbb2}
 
-
 [bar/main]
 ;monitor = LVDS1
 ;monitor = HDMI1
@@ -302,11 +301,11 @@ type = internal/network
 interface = wlp7s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <label-connected>
 format-connected-underline = ${colors.darkmagenta}
-label-connected = %local_ip%%downspeed:9%
+label-connected = %ifname% %local_ip% %downspeed%
 
-format-disconnected = 😱 <label-disconnected>
+format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = %ifname%
 label-disconnected-foreground = ${colors.gray}
@@ -326,10 +325,10 @@ interface = enp14s0
 interval = 3.0
 
 format-connected-underline = ${colors.darkgreen}
-format-connected = 😈 <label-connected>
-label-connected = %local_ip%%downspeed:9%
+format-connected = <label-connected>
+label-connected = %ifname% %local_ip% %downspeed%
 
-format-disconnected = 😱 <label-disconnected>
+format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = %ifname%
 label-disconnected-foreground = ${colors.gray}

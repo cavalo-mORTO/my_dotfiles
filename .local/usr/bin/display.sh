@@ -11,12 +11,8 @@
 # - Give it exec priviledge, or chmod +x /path/to/power.sh
 # - Run it
 
-chosen=$(echo -e "[Cancel]\nDefault\nDocked\n" | rofi -dmenu -i)
+chosen=$(echo -e "[Cancel]\n$(autorandr --detected)" | rofi -dmenu -i)
 # Info about some states are available here:
 # https://www.freedesktop.org/software/systemd/man/systemd-sleep.conf.html#Description
 
-if [[ $chosen = "Default" ]]; then
-    autorandr --load default
-elif [[ $chosen = "Docked" ]]; then
-    autorandr --load docked
-fi
+autorandr --load $chosen
