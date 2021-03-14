@@ -6,25 +6,25 @@
 *scrollTtyOutput:	false
 
 /* Start flavours */
-! Base16 Synth Midnight Terminal Dark
-! Scheme: Michaël Ball (http://github.com/michael-ball/)
+! Base16 Nord
+! Scheme: arcticicestudio
 
-#define base00 #050608
-#define base01 #1a1b1c
-#define base02 #28292a
-#define base03 #474849
-#define base04 #a3a5a6
-#define base05 #c1c3c4
-#define base06 #cfd1d2
-#define base07 #dddfe0
-#define base08 #b53b50
-#define base09 #ea770d
-#define base0A #c9d364
-#define base0B #06ea61
-#define base0C #42fff9
-#define base0D #03aeff
-#define base0E #ea5ce2
-#define base0F #cd6320
+#define base00 #2E3440
+#define base01 #3B4252
+#define base02 #434C5E
+#define base03 #4C566A
+#define base04 #D8DEE9
+#define base05 #E5E9F0
+#define base06 #ECEFF4
+#define base07 #8FBCBB
+#define base08 #BF616A
+#define base09 #D08770
+#define base0A #EBCB8B
+#define base0B #A3BE8C
+#define base0C #88C0D0
+#define base0D #81A1C1
+#define base0E #B48EAD
+#define base0F #5E81AC
 
 *foreground:   base05
 #ifdef background_opacity

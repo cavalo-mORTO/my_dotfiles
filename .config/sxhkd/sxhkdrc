@@ -2,9 +2,10 @@
 # wm independent hotkeys
 #
 
-# launch xterm
+#scratchpad
 super + {_,shift + }Return
-	{toggle helipad, $TERMINAL}
+    {id=$(cat /tmp/scratchid);\
+    bspc node $id --flag hidden;bspc node -f $id, $TERMINAL}
 
 # launch vim
 super + e
@@ -13,10 +14,6 @@ super + e
 # ranger file manager
 super + @space
     toggle ranger
-
-# brave browser
-super + w
-	brave
 
 # rofi window switcher
 super + x
@@ -34,8 +31,8 @@ super + Escape
 super + Delete
 	screensaver
 
-# power menu
-super + Home
+# session management
+ctrl + alt + {Home,End,Delete}
     power.sh
 
 # display on all connected screens
@@ -106,14 +103,13 @@ super + {_,shift + }{Left,Down,Up,Right}
 # 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
-super + {_,shift + }c
+super + {period,comma}
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
 # super + bracket{left,right}
 #	bspc desktop -f {prev,next}.local
-
-super + {period,comma}
+super + {_,shift + }c
 	bspc desktop -f {next,prev}.local
 
 # focus the last node/desktop

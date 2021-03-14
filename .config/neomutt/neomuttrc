@@ -8,7 +8,10 @@ set editor				= "nvim +/^$ ++1 -c 'set filetype=mail textwidth=0 noautoindent'"
 set edit_headers = yes  # See the headers when editing
 set charset = UTF-8     # value of $LANG; also fallback for send_charset
 set mailcap_path = ~/.config/neomutt/mailcap
-auto_view text/html
+set sort = reverse-date-received
+
+alternative_order text/plain text text/html #prefer plaintext over dumped html
+auto_view text/html #load html emails with links (config in ~/.mailcap)
 
 # Set up preview pane for messages
 set pager_index_lines 	= 12 	# number of index lines to show

@@ -4,7 +4,7 @@ set imap_pass = $my_pass_0
 set folder = "imaps://imap.gmail.com"
 set spoolfile = "+INBOX"
 set record="+[Gmail]/Correio enviado"
-set postponed="+[Gmail]/Rascunhos"
+set postponed="+[Gmail]/Drafts"
 set mbox="+[Gmail]/Todo o correio"
 set trash = "+[Gmail]/Caixote do Lixo"
 

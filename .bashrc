@@ -102,6 +102,8 @@ alias np='nano -w PKGBUILD'
 alias more=less
 alias vim=nvim
 alias vi=/usr/bin/vim
+alias mutt=neomutt
+alias rng=ranger
 
 xhost +local:root > /dev/null 2>&1
 
@@ -163,3 +165,12 @@ export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS="-Xr"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 alias wifi="sudo wpa_supplicant -B -D wext -i wlp7s0 -c /etc/wpa_supplicant.conf"
+
+bind Space:magic-space
+
+# fzf
+source /usr/share/fzf/completion.bash && source /usr/share/fzf/key-bindings.bash
+export FZF_DEFAULT_OPTS='--exact --select-1 --exit-0'
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"

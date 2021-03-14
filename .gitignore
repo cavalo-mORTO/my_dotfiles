@@ -1,6 +1,4 @@
-/*
-*.bak
-
+*
 !.gitignore
 
 !.bashrc
@@ -9,13 +7,8 @@
 !.Xresources
 !/.Xresources.d
 
-!/.config
-/.config/*
 !/.config/bspwm
-!/.config/nvim
-/.config/nvim/*
 !/.config/nvim/init.vim
-!/.config/nvim/colorscheme.vim
 !/.config/nvim/colors
 !/.config/rofi
 !/.config/sxhkd
@@ -24,12 +17,6 @@
 !/.config/neomutt
 !/.config/flavours
 
-!/.local
-/.local/*
-!/.local/usr
-/.local/usr/*
-!/.local/usr/bin
+!/.bin
 
-!/.local/share
-/.local/share/*
 !/.local/share/backgrounds

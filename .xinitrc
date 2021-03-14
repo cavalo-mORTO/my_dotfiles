@@ -38,8 +38,5 @@ xsetroot -cursor_name left_ptr &
 # turn off touchpad
 touchpad_toggle &
 
-# autostart apps
-$HOME/.config/bspwm/autostart &
-
 # start bspwm
 exec bspwm

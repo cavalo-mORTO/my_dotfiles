@@ -17,27 +17,28 @@
 ;
 ;==========================================================
 
+; Start flavours
 [colors]
-black = ${xrdb:color0:#1d2021}
-darkred = ${xrdb:color1:#cc241d}
-darkgreen = ${xrdb:color2:#98971a}
-darkyellow = ${xrdb:color3:#d79921}
-darkblue = ${xrdb:color4:#458588}
-darkmagenta = ${xrdb:color5:#b16286}
-darkcyan = ${xrdb:color6:#689d6a}
-lightgray = ${xrdb:color7:#a89984}
-gray = ${xrdb:color8:#928374}
-red = ${xrdb:color9:#fb4934}
-green = ${xrdb:color10:#b8bb26}
-yellow = ${xrdb:color11:#fabd2f}
-blue = ${xrdb:color12:#83a598}
-magenta = ${xrdb:color13:#d3869b}
-cyan = ${xrdb:color14:#8ec07c}
-white = ${xrdb:color15:#ebdbb2}
-background = ${xrdb:color0:#1d2021}
-foreground = ${xrdb:color7:#ebdbb2}
+base00 = ee2E3440
+base01 = 3B4252
+base02 = 434C5E
+base03 = 4C566A
+base04 = D8DEE9
+base05 = E5E9F0
+base06 = ECEFF4
+base07 = 8FBCBB
+base08 = BF616A
+base09 = D08770
+base0A = EBCB8B
+base0B = A3BE8C
+base0C = 88C0D0
+base0D = 81A1C1
+base0E = B48EAD
+base0F = 5E81AC
+; End flavours
 
 [bar/main]
+locale = pt_PT.UTF-8
 ;monitor = LVDS1
 ;monitor = HDMI1
 enable-ipc = true
@@ -48,14 +49,14 @@ height = 20
 ;radius = 6.0
 fixed-center = false
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${colors.base00}
+foreground = ${colors.base05}
 
 line-size = 3
-line-color = {$xrdb:red}
+line-color = {$colors.base09}
 
 border-size = 0
-border-color = ${colors.white}
+border-color = ${colors.base07}
 
 padding-left = 0
 padding-right = 1
@@ -78,7 +79,7 @@ font-2 = DejaVuSans:size=10;2
 ; Other modules: mpd xkeyboard filesystem xbacklight backlight-acpi cpu memory temperature powermenu weather
 modules-left = bspwm xwindow
 ;modules-center =
-modules-right = volume xbacklight wlan eth memory cpu popup-calendar
+modules-right = volume xbacklight wlan eth memory cpu date
 
 tray-position = right
 tray-padding = 0
@@ -101,14 +102,14 @@ height = 22
 ;radius = 6.0
 fixed-center = false
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${colors.base00}
+foreground = ${colors.base05}
 
 line-size = 3
-line-color = {$xrdb:red}
+line-color = {$colors:base09}
 
 border-size = 0
-border-color = ${colors.white}
+border-color = ${colors.base07}
 
 padding-left = 0
 padding-right = 1
@@ -147,23 +148,23 @@ interval = 5000
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:36:...%
-format-foreground = ${colors.blue}
+format-foreground = ${colors.base04}
 
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
 
 format-prefix = " "
-format-prefix-foreground = ${colors.gray}
-format-prefix-underline = ${colors.darkmagenta}
+format-prefix-foreground = ${colors.base03}
+format-prefix-underline = ${colors.base0E}
 
 label-layout = %layout%
-label-layout-underline = ${colors.darkmagenta}
+label-layout-underline = ${colors.base0E}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.darkmagenta}
-label-indicator-underline = ${colors.darkmagenta}
+label-indicator-background = ${colors.base0E}
+label-indicator-underline = ${colors.base0E}
 
 [module/filesystem]
 type = internal/fs
@@ -172,10 +173,10 @@ interval = 25
 mount-0 = /
 mount-1 = /home
 
-label-mounted-underline = ${colors.cyan}
+label-mounted-underline = ${colors.base0F}
 label-mounted = /: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.gray}
+label-unmounted-foreground = ${colors.base03}
 
 [module/bspwm]
 type = internal/bspwm
@@ -184,21 +185,21 @@ format = <label-state> | <label-mode>
 pin-workspaces = true
 
 label-focused = %index%	
-label-focused-foreground = ${colors.black}
-label-focused-background = ${colors.blue}
-label-focused-underline = ${colors.yellow}
+label-focused-foreground = ${colors.base00}
+label-focused-background = ${colors.base04}
+label-focused-underline = ${colors.base02}
 label-focused-padding = 1
 
 label-occupied = %index%
-label-occupied-underline = ${colors.blue}
+label-occupied-underline = ${colors.base04}
 label-occupied-padding = 1
 
 label-urgent = %index%!
-label-urgent-background = ${colors.red}
+label-urgent-background = ${colors.base09}
 label-urgent-padding = 1
 
 label-empty = %index%
-label-empty-foreground = ${colors.lightgray}
+label-empty-foreground = ${colors.base07}
 label-empty-padding = 1
 
 ; The following labels will be used to indicate the layout/mode
@@ -244,7 +245,7 @@ label-song =  %artist% - %title%
 label-song-maxlen = 70
 label-song-ellipsis = true
 
-format-paused-foreground = ${colors.gray}
+format-paused-foreground = ${colors.base03}
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -274,7 +275,7 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format = %{A1:$TERMINAL -e htop:}<label> <ramp-coreload>%{A}
-format-underline = ${colors.red}
+format-underline = ${colors.base09}
 label = CPU
 
 ; Spacing between individual per-core ramps
@@ -292,7 +293,7 @@ ramp-coreload-7 = █
 type = internal/memory
 interval = 2
 format = %{A1:$TERMINAL -e htop:}<label>%{A}
-format-underline = ${colors.darkcyan}
+format-underline = ${colors.base0C}
 label = MEM %gb_free%
 
 
@@ -302,13 +303,13 @@ interface = wlp7s0
 interval = 3.0
 
 format-connected = <label-connected>
-format-connected-underline = ${colors.darkmagenta}
+format-connected-underline = ${colors.base0E}
 label-connected = %ifname% %local_ip% %downspeed%
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = %ifname%
-label-disconnected-foreground = ${colors.gray}
+label-disconnected-foreground = ${colors.base03}
 
 ; <ramp-signal>
 ramp-signal-0 = 😱
@@ -317,41 +318,29 @@ ramp-signal-2 = 😒
 ramp-signal-3 = 😊
 ramp-signal-4 = 😃
 ramp-signal-5 = 😈
-ramp-signal-foreground = ${colors.gray}
+ramp-signal-foreground = ${colors.base03}
 
 [module/eth]
 type = internal/network
 interface = enp14s0
 interval = 3.0
 
-format-connected-underline = ${colors.darkgreen}
+format-connected-underline = ${colors.base0B}
 format-connected = <label-connected>
 label-connected = %ifname% %local_ip% %downspeed%
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = %ifname%
-label-disconnected-foreground = ${colors.gray}
-
-[module/popup-calendar]
-type = custom/script
-exec = ~/.local/usr/bin/popup-calendar.sh
-interval = 5
-click-left = ~/.local/usr/bin/popup-calendar.sh --popup &
-format-prefix-foreground = ${colors.gray}
-format-underline = ${colors.blue}
+label-disconnected-foreground = ${colors.base03}
 
 
 [module/date]
 type = internal/date
 interval = 60
 
-date =
-date-alt = " %Y-%m-%d"
-
-time = %H:%M
-time-alt = %H:%M:%S
-
+date = "%a %d %R"
+date-alt = "%c"
 
 ;date = "%Y %b %d (%a)"
 ;time = %H:%M:%S
@@ -361,11 +350,11 @@ time-alt = %H:%M:%S
 ;time-alt = " at %H:%M"
 ;time-alt = %H:%M:%S
 
-format = %{A1:rofi -e "$(cal -3)":}🕓 <label>%{A}
-format-prefix-foreground = ${colors.gray}
-format-underline = ${colors.blue}
+format = <label>
+format-prefix-foreground = ${colors.base03}
+format-underline = ${colors.base04}
 
-label = %date% %time%
+label = %date%
 
 [module/volume]
 type = internal/alsa
@@ -373,7 +362,7 @@ type = internal/alsa
 format-volume = <ramp-volume> <bar-volume>
 label-volume-foreground = ${root.foreground}
 
-format-muted-foreground = ${colors.gray}
+format-muted-foreground = ${colors.base03}
 label-muted = 🔇 muted
 
 ramp-volume-0 = 🔈
@@ -381,13 +370,13 @@ ramp-volume-1 = 🔉
 ramp-volume-2 = 🔊
 
 bar-volume-width = 9
-bar-volume-foreground-0 = ${colors.blue}
-bar-volume-foreground-1 = ${colors.blue}
-bar-volume-foreground-2 = ${colors.green}
-bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.green}
-bar-volume-foreground-5 = ${colors.yellow}
-bar-volume-foreground-6 = ${colors.red}
+bar-volume-foreground-0 = ${colors.base04}
+bar-volume-foreground-1 = ${colors.base04}
+bar-volume-foreground-2 = ${colors.base01}
+bar-volume-foreground-3 = ${colors.base01}
+bar-volume-foreground-4 = ${colors.base01}
+bar-volume-foreground-5 = ${colors.base02}
+bar-volume-foreground-6 = ${colors.base09}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -395,7 +384,7 @@ bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.gray}
+bar-volume-empty-foreground = ${colors.base03}
 
 [module/battery]
 type = internal/battery
@@ -405,14 +394,14 @@ full-at = 98
 
 ;format-charging = Charging... <label-charging>
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = ${colors.darkyellow}
+format-charging-underline = ${colors.base0A}
 
 ;format-discharging = <label-discharging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.gray}
+format-full-prefix-foreground = ${colors.base03}
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
@@ -420,14 +409,14 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-ramp-capacity-foreground = ${colors.gray}
+ramp-capacity-foreground = ${colors.base03}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-foreground = ${colors.gray}
+animation-charging-foreground = ${colors.base03}
 animation-charging-framerate = 500
 
 [module/temperature]
@@ -437,20 +426,20 @@ base-temperature = 20
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = ${colors.red}
+format-underline = ${colors.base09}
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.darkmagenta}
+label-warn-foreground = ${colors.base0E}
 
 ramp-0 = A
 ramp-1 = B
 ramp-2 = C
 ramp-3 = D
 ramp-4 = E
-ramp-foreground = ${colors.gray}
+ramp-foreground = ${colors.base03}
 
 [module/powermenu]
 type = custom/menu
@@ -458,11 +447,11 @@ type = custom/menu
 format-spacing = 1
 
 label-open = 
-label-open-foreground = ${colors.darkmagenta}
+label-open-foreground = ${colors.base0E}
 label-close =  cancel
-label-close-foreground = ${colors.darkmagenta}
+label-close-foreground = ${colors.base0E}
 label-separator = |
-label-separator-foreground = ${colors.gray}
+label-separator-foreground = ${colors.base03}
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1

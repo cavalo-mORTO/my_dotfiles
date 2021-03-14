@@ -3,10 +3,10 @@ set imap_user = "miguel_mig21@hotmail.com"
 set imap_pass = $my_pass_2
 set folder = "imaps://Outlook.office365.com"
 set spoolfile = "+INBOX"
-set record="+[Gmail]/Correio enviado"
-set postponed="+[Gmail]/Rascunhos"
-set mbox="+[Gmail]/Todo o correio"
-set trash = "+[Gmail]/Caixote do Lixo"
+set record="+Sent"
+set postponed="+Drafts"
+set mbox="+Arquivo"
+set trash = "+Deleted"
 
 ## Send options.
 set smtp_url = "smtp://miguel_mig21@SMTP.office365.com"

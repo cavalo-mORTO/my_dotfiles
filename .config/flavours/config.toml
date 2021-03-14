@@ -45,7 +45,26 @@ end = '/* End flavours */'
 hook = 'bash -c "xrdb -override ~/.Xresources; killall -USR1 polybar; bspc wm -r"'
 
 [[item]]
+file = '~/.config/polybar/config'
+template = 'polybar'
+rewrite = false
+start= '; Start flavours'
+end = '; End flavours'
+
+[[item]]
 file = '~/.config/rofi/themes/colors.rasi'
 template = 'rofi'
-subtemplate = 'colors'
+rewrite = true
+
+[[item]]
+file = '~/.themes/FlatColor/colors3'
+template = 'gtk-flatcolor'
+subtemplate = 'gtk-3'
+rewrite = true
+hook = 'killall -HUP xsettingsd'
+
+[[item]]
+file = '~/.themes/FlatColor/colors2'
+template = 'gtk-flatcolor'
+subtemplate = 'gtk-2'
 rewrite = true
