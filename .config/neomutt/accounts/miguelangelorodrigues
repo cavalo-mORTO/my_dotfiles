@@ -15,10 +15,6 @@ set from = "miguelangelorodrigues@enta.pt"
 set hostname="enta.pt"
 set use_from = yes
 
-# Connection options
-set ssl_force_tls = yes
-unset ssl_starttls
-
 ## Hook -- IMPORTANT!
 account-hook miguelangelorodrigues* "set imap_user=miguelangelorodrigues@enta.pt imap_pass=$my_pass_0"
 mailboxes +inbox

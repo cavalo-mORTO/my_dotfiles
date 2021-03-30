@@ -104,6 +104,7 @@ alias vim=nvim
 alias vi=/usr/bin/vim
 alias mutt=neomutt
 alias rng=ranger
+alias open=xdg-open
 
 xhost +local:root > /dev/null 2>&1
 
@@ -148,15 +149,29 @@ ex ()
   fi
 }
 
-open ()
+#
+# # cx - archive compressor
+# # usage: cx <archive> <list of files>
+cx ()
 {
-    if [ -f $1 ] ; then
+    if [ $1 ] ; then
         case $1 in
-            *.torrent)  transmission-cli $1 > /dev/null 2>&1 & ;;
-            *)          nohup xdg-open "$1" > /dev/null 2>&1 & ;;
+            *.tar.bz2)   tar cjf $1 "${@:2}" ;;
+            *.tar.gz)   tar czf $1 "${@:2}" ;;
+            *.tar.lz)   tar --lzip -cf $1 "${@:2}" ;;
+            *.bz2)      bzip2 $1 "${@:2}" ;;
+            *.rar)      unrar c $1 "${@:2}" ;;
+            *.gz)       gzip $1 "${@:2}" ;;
+            *.tar)      tar cf $1 "${@:2}" ;;
+            *.tbz2)     tar cjf $1 "${@:2}" ;;
+            *.tgz)      tar czf $1 "${@:2}" ;;
+            *.zip)      zip $1 "${@:2}" ;;
+            *.Z)        compress $1 "${@:2}" ;;
+            *.7z)       7z c $1 "${@:2}" ;;
+            *)          echo "'$1' cannot be compressed via cx()" ;;
         esac
     else
-        echo "'$1' is not a valid file"
+        echo "must provide an archive name"
     fi
 }
 
@@ -174,3 +189,6 @@ export FZF_DEFAULT_OPTS='--exact --select-1 --exit-0'
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+# Activate vi mode with <Escape>
+set -o vi

@@ -3,6 +3,10 @@ set header_cache = "~/.cache/mutt"
 set message_cachedir = "~/.cache/mutt"
 unset use_domain
 
+set smtp_authenticators="login"
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
 # ================  Composition  ====================
 set editor				= "nvim +/^$ ++1 -c 'set filetype=mail textwidth=0 noautoindent'"
 set edit_headers = yes  # See the headers when editing

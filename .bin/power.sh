@@ -11,12 +11,14 @@
 # - Give it exec priviledge, or chmod +x /path/to/power.sh
 # - Run it
 
-chosen=$(echo -e "[Cancel]\nLogout\nShutdown\nReboot\nSuspend\nHibernate\nHybrid-sleep\nSuspend-then-hibernate" | rofi -dmenu -i)
+chosen=$(echo -e "[Cancel]\nLogout\nRestart WM\nShutdown\nReboot\nSuspend\nHibernate\nHybrid-sleep\nSuspend-then-hibernate" | rofi -dmenu -i)
 # Info about some states are available here:
 # https://www.freedesktop.org/software/systemd/man/systemd-sleep.conf.html#Description
 
 if [[ $chosen = "Logout" ]]; then
     loginctl terminate-user $(whoami)
+elif [[ $chosen = "Restart WM" ]]; then
+    bspc wm -r
 elif [[ $chosen = "Shutdown" ]]; then
 	systemctl poweroff
 elif [[ $chosen = "Reboot" ]]; then

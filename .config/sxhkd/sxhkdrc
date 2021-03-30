@@ -5,7 +5,7 @@
 #scratchpad
 super + {_,shift + }Return
     {id=$(cat /tmp/scratchid);\
-    bspc node $id --flag hidden;bspc node -f $id, $TERMINAL}
+    bspc node $id -g hidden;bspc node -f $id, $TERMINAL}
 
 # launch vim
 super + e
@@ -27,10 +27,6 @@ super + d
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# bspwm screensaver
-super + Delete
-	screensaver
-
 # session management
 ctrl + alt + {Home,End,Delete}
     power.sh
@@ -38,10 +34,6 @@ ctrl + alt + {Home,End,Delete}
 # display on all connected screens
 super + p
     display.sh && feh --no-fehbg --bg-fill $WALLPAPER
-
-# screen fix
-super + KP_Enter
-    xrandr -s 1280x720 && xrandr -s 1366x768
 
 #
 # bspwm hotkeys
@@ -154,11 +146,17 @@ super + ctrl + shift + space
 super + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
+super + alt + {Left,Down,Up,Right}
+    {\
+        bspc node -z left -10 0; bspc node -z right 10 0,\
+        bspc node -z bottom 0 10; bspc node -z top 0 -10,\
+        bspc node -z top 0 10; bspc node -z bottom 0 -10,\
+        bspc node -z right -10 0; bspc node -z left 10 0\
+    }
 
 # contract a window by moving one of its side inward
 super + ctrl + alt + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
 
 # move a floating window
 super + ctrl + {Left,Down,Up,Right}

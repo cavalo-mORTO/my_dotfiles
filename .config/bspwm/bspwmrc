@@ -1,5 +1,15 @@
 #!/bin/sh
 
+function desktops {
+    local i=0
+    local m
+    for m in $(bspc query -M)
+    do
+        bspc monitor $m -d $(seq -s" " $((i+1)) $((i+5)))
+        $((i+=5))
+    done
+}
+
 ## Coloring
 FOREGROUND=$(xrdb -query | grep 'foreground:'| awk '{print $NF}')
 BACKGROUND=$(xrdb -query | grep 'background:'| awk '{print $NF}')
@@ -12,14 +22,15 @@ MAGENTA=$(xrdb -query | grep 'color5:'| awk '{print $NF}')
 CYAN=$(xrdb -query | grep 'color6:'| awk '{print $NF}')
 WHITE=$(xrdb -query | grep 'color7:'| awk '{print $NF}')
 
+desktops
+
 bspc config normal_border_color "$BLACK"
 bspc config active_border_color "$MAGENTA"
 bspc config focused_border_color "$MAGENTA"
 bspc config presel_feedback_color "$RED" 
 
-bspc monitor LVDS1 -d 1 2 3 4 5
-
 bspc config focus_follows_pointer true
+bspc config pointer_follows_monitor true
 
 # for spiral mode
 bspc config automatic_scheme spiral
@@ -35,10 +46,11 @@ bspc config ignore_ewmh_focus true
 bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
 
-bspc rule -a scratchpad sticky=on state=floating hidden=on border=off rectangle=1366x300+0+0
+scratchpad_size=$(bspc wm -d | jq -r '.monitors[0].rectangle | "\(.width)x\(.height/(5/2) | round)"')
+bspc rule -a scratchpad layer=above sticky=on state=floating hidden=on border=off rectangle=$scratchpad_size+0+0
 
 # check scratchpad already running
-[ "$(ps -x | grep -c 'scratchpad')" -eq "1" ] && termite --class=scratchpad -e scratch &
+[ "$(ps -x | grep -c 'scratchpad')" -eq "1" ] && $TERMINAL --class=scratchpad -e scratch &
 
 # start hot-key daemon
 sxhkd &

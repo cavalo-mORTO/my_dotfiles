@@ -6,6 +6,7 @@
 !.xinitrc
 !.Xresources
 !/.Xresources.d
+!.xsettingsd
 
 !/.config/bspwm
 !/.config/nvim/init.vim
