@@ -1,20 +1,21 @@
 ## Receive options.
 set imap_user = "miguel_mig21@hotmail.com"
-set imap_pass = $my_pass_2
+set imap_pass = $my_hotmail_pass
 set folder = "imaps://Outlook.office365.com"
 set spoolfile = "+INBOX"
 set record="+Sent"
 set postponed="+Drafts"
-set mbox="+Arquivo"
 set trash = "+Deleted"
 
 ## Send options.
 set smtp_url = "smtp://miguel_mig21@hotmail.com@SMTP.office365.com:587"
-set smtp_pass = $my_pass_2
+set smtp_pass = $my_hotmail_pass
 set from = "miguel_mig21@hotmail.com"
 set hostname="hotmail.com"
-set use_from = yes
+
+set ssl_force_tls=yes
+unset ssl_starttls
 
 ## Hook -- IMPORTANT!
-account-hook miguel_mig21* "set imap_user=miguel_mig21@hotmail.com imap_pass=$my_pass_2"
-mailboxes +inbox
+account-hook $folder "set imap_user=miguel_mig21@hotmail.com imap_pass=$my_hotmail_pass"
+mailboxes = +INBOX

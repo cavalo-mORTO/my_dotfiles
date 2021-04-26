@@ -1,11 +1,6 @@
 set mbox_type = Maildir
 set header_cache = "~/.cache/mutt"
 set message_cachedir = "~/.cache/mutt"
-unset use_domain
-
-set smtp_authenticators="login"
-set ssl_starttls = yes
-set ssl_force_tls = yes
 
 # ================  Composition  ====================
 set editor				= "nvim +/^$ ++1 -c 'set filetype=mail textwidth=0 noautoindent'"
@@ -26,11 +21,11 @@ set tilde               = yes   # show tildes like in vim
 set markers             = no 	# no ugly plus signs
 
 set realname = "Miguel Rodrigues"
-source "gpg -dq ~/.my_pwds.gpg |"
+source "gpg -dq $HOME/.my_pwds.gpg |"
 
 ## ACCOUNT1
-#source "~/.config/neomutt/accounts/miguelmig17"
-#folder-hook miguelmig17* 'source ~/.config/neomutt/accounts/miguelmig17'
+source "~/.config/neomutt/accounts/miguelmig17"
+folder-hook miguelmig17* 'source ~/.config/neomutt/accounts/miguelmig17'
 
 ## ACCOUNT2
 source "~/.config/neomutt/accounts/miguel_mig21"
@@ -39,6 +34,10 @@ folder-hook miguel_mig21* 'source ~/.config/neomutt/accounts/miguel_mig21'
 ## ACCOUNT3
 source "~/.config/neomutt/accounts/miguelangelorodrigues"
 folder-hook miguelangelorodrigues* 'source ~/.config/neomutt/accounts/miguelangelorodrigues'
+
+macro index,pager <f1> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/miguelmig17<enter><change-folder>!<enter>'
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/miguel_mig21<enter><change-folder>!<enter>'
+macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.config/neomutt/accounts/miguelangelorodrigues<enter><change-folder>!<enter>'
 
 macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 bind index,pager B sidebar-toggle-visible
