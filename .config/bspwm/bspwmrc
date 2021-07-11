@@ -56,7 +56,7 @@ bspc rule -a scratchpad layer=above sticky=on state=floating hidden=on border=of
 sxhkd &
 
 # set compositor for shadows and stuff
-picom &
+picom --backend glx &
 
 # set wallpaper
 feh --no-fehbg --bg-fill $WALLPAPER
